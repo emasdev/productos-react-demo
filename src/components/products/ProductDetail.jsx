@@ -1,5 +1,6 @@
-import { Alert, Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { Alert, Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function ProductDetail({ product }) {
 
@@ -19,14 +20,11 @@ export default function ProductDetail({ product }) {
                 <Alert severity="warning">No se encontró este producto.</Alert>
                 :
                 <Box
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
                     padding={4}
                 >
                     <Card>
                         <Grid container spacing={2}>
-                            <Grid item xs={8}>
+                            <Grid item xs={12} sm={6}>
                                 <CardMedia
                                     component="img"
                                     width={"100%"}
@@ -35,7 +33,7 @@ export default function ProductDetail({ product }) {
                                     onError={onImageError}
                                 />
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={12} sm={6}>
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
                                         Nombre: {name}
@@ -57,9 +55,11 @@ export default function ProductDetail({ product }) {
 
                         </Grid>
 
-
-
                     </Card>
+                    <Box padding={2} display={"flex"} justifyContent={"flex-end"}>
+                        <Button size="small" component={Link} to="/" >Todos los productos</Button>
+                    </Box>
+
                 </Box>
 
 

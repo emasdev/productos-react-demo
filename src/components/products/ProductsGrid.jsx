@@ -10,7 +10,6 @@ import { setProducts } from '../../store/products/products.slice';
 
 export default function ProductsGrid() {
 
-    //const [products, setProducts] = useState([])
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [page, setPage] = useState(1);
@@ -86,17 +85,24 @@ export default function ProductsGrid() {
 
     return (
         <Box padding={2}>
-            <Box marginBottom={2} component={"form"} onSubmit={handleSubmit}>
-                <TextField
-                    label="Buscar"
-                    variant="standard"
-                    name='search'
-                    value={search}
-                    onChange={(e) => { setSearch(e.target.value) }}
-                />
-                <Button type="submit" variant="standard" endIcon={<SearchIcon />}>
-                </Button>
+            <Box component={"form"} onSubmit={handleSubmit}>
+                <Grid container marginBottom={2}>
+                    <Grid item xs={8} md={5}>
+                        <TextField
+                            label="Buscar"
+                            variant="standard"
+                            name='search'
+                            value={search}
+                            onChange={(e) => { setSearch(e.target.value) }}
+                            fullWidth
+                        />
+                    </Grid>
+                    <Grid item xs={4} md={7}>
+                        <Button type="submit" variant="standard" endIcon={<SearchIcon />}></Button>
+                    </Grid>
+                </Grid>
             </Box>
+
             <Grid container spacing={{ xs: 2, md: 3, lg: 4 }} columns={{ xs: 2, sm: 8, md: 12, lg: 12 }}>
                 {products.map((product, index) => (
                     <Grid item xs={2} sm={4} md={4} lg={3} key={index}>

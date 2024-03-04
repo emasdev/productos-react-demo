@@ -19,12 +19,9 @@ export default function ProductCard({ product }) {
         e.target.src = placeholderImage
     }
 
-    const navigateToDetail = () => {
-        navigate(detailURL)
-    }
     return (
         <Card>
-            <CardActionArea component={Link} to={{ pathname: detailURL, state: { product } }}>
+            <CardActionArea component={Link} to={detailURL} state={{ product: product }}>
                 <CardMedia
                     component="img"
                     height="250"

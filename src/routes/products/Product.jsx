@@ -4,11 +4,13 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import ProductDetail from '../../components/products/ProductDetail';
 
-export default function Product() {
+export default function Product(props) {
 
     const { productId } = useParams();
     const [isLoading, setIsLoading] = useState(true)
     const [selectedProduct, setSelectedProduct] = useState(null)
+    const { state: { product } } = useLocation();
+
 
     const fetchData = async () => {
         setIsLoading(true);
@@ -33,8 +35,18 @@ export default function Product() {
     }
 
     useEffect(() => {
-        productId ? fetchData() : setIsLoading(false)
-    }, [productId])
+        if (productId) {
+            if (product) {
+                setSelectedProduct(product)
+                setIsLoading(false)
+            } else {
+                fetchData()
+            }
+        } else {
+            setIsLoading(false)
+        }
+
+    }, [productId, product])
 
     return (
         <>
