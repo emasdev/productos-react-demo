@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+import "./ProductCardStyle.scss"
 
 export default function ProductCard({ product }) {
 
@@ -20,7 +21,7 @@ export default function ProductCard({ product }) {
     }
 
     return (
-        <Card>
+        <Card className='product-card'>
             <CardActionArea component={Link} to={detailURL} state={{ product: product }}>
                 <CardMedia
                     component="img"

@@ -1,6 +1,8 @@
-import { Box, Container, Grid, Paper, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { FormContainer, TextFieldElement } from "react-hook-form-mui";
+import CustomInput from "../../components/form/CustomInput";
 
 const Formulario = () => {
 
@@ -26,15 +28,44 @@ const Formulario = () => {
         fetchFormScheme()
     }, [])
 
+    const onSuccess = (data) => {
+        alert("se enviaron los siguientes datos correctamente: " + JSON.stringify(data))
+    }
+
     return (
         <Container>
             <Box marginTop={2}>
-                <Paper>
-                    <Typography variant="h4">
-                        Formulario dinámico
-                    </Typography>
-                    <Box component={"form"}>
-                        <Grid container>
+                <Paper elevation={4}>
+                    <Box padding={2}>
+                        <Typography variant="h4" marginBottom={2}>
+                            Formulario dinámico
+                        </Typography>
+                        <FormContainer
+
+                            onSuccess={onSuccess}
+                        >
+                            <Grid container spacing={2}>
+                                {/* <Grid item xs={12}>
+                                <TextFieldElement name="Test 4" label="Test 4" required />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextFieldElement name="Test 3" label="Test 3" required />
+                            </Grid> */}
+                                {formScheme.map((element) => {
+                                    return (
+                                        <Grid item key={element.id} xs={12} sm={6}>
+                                            <CustomInput inputScheme={element} />
+                                        </Grid>
+                                    )
+                                })}
+                                <Grid item xs={12}>
+                                    <Button type="submit">Enviar</Button>
+                                </Grid>
+                            </Grid>
+
+
+
+                            {/* <Grid container>
                             {formScheme.map((element) => {
                                 return (
                                     <Grid item key={element.id} xs={12} sm={6}>
@@ -42,8 +73,10 @@ const Formulario = () => {
                                     </Grid>
                                 )
                             })}
-                        </Grid>
+                        </Grid> */}
+                        </FormContainer>
                     </Box>
+
                 </Paper>
 
             </Box>
