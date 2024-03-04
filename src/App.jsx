@@ -3,34 +3,25 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Navigation from './components/Navigation'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import Home from './routes/home/Home'
+import NotFound from './components/NotFound'
+import Formulario from './routes/home/formulario/Formulario'
+import Product from './routes/products/Product'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <Navigation />
-      {/*       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
-    </>
+    <Routes>
+      <Route path='/' element={<Navigation />}>
+        <Route index element={<Home />} />
+        <Route path='formulario' element={<Formulario />} />
+        <Route path='producto' element={<Product />} >
+          <Route path=':productId' element={<Product />} />
+        </Route>
+        <Route path='*' element={<NotFound />} />
+      </Route>
+    </Routes>
   )
 }
 
