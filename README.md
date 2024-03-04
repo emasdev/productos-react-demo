@@ -12,7 +12,7 @@ Instalar dependencias del package.json
 npm i
 ```
 
-## Utilización
+## Uso
 
 Utlizar en ambiente local
 
