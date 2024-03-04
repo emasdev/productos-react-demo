@@ -1,8 +1,35 @@
-# React + Vite
+# Productos React Redux Dinamic Form App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Esta es una aplicación demo creada con React y Redux que se conecta con la API de starwars para cargar los productos.
 
-Currently, two official plugins are available:
+También cuenta con la creación y validación de formularios dinámicos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Instalación
+
+Instalar dependencias del package.json
+
+```bash
+npm i
+```
+
+## Utilización
+
+Utlizar en ambiente local
+
+```bash
+npm run dev
+```
+
+Abrir navegador en:
+
+http://localhost:5173/
+
+## Firebase Deploy
+
+Para probar la aplicación directo desde tu navegador entra a:
+
+https://productos-react-3aa8a.web.app/
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
