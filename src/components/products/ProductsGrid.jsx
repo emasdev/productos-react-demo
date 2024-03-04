@@ -4,15 +4,20 @@ import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import ProductCard from './ProductCard';
 import SearchIcon from '@mui/icons-material/Search';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectProducts } from '../../store/products/products.selector';
+import { setProducts } from '../../store/products/products.slice';
 
 export default function ProductsGrid() {
 
-    const [products, setProducts] = useState([])
+    //const [products, setProducts] = useState([])
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("")
     const [infiniteScroll, setInfiniteScroll] = useState(true)
+    const dispatch = useDispatch()
+    const products = useSelector(selectProducts)
 
 
     const fetchData = async (isSearch = false) => {
@@ -41,9 +46,12 @@ export default function ProductsGrid() {
 
                 response.data.next ? setPage(page + 1) : setPage(null)
                 if (isSearch) {
-                    setProducts(response.data.results)
+
+                    //setProducts(response.data.results)
+                    dispatch(setProducts(response.data.results));
                 } else {
-                    setProducts(products.concat(response.data.results))
+                    //setProducts(products.concat(response.data.results))
+                    dispatch(setProducts(products.concat(response.data.results)));
                 }
 
             })

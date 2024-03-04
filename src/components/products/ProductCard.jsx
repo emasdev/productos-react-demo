@@ -4,10 +4,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function ProductCard({ product }) {
 
+    const navigate = useNavigate();
     const { url, name, model } = product
     const detailURL = "/producto/" + url.replace("https://swapi.dev/api/vehicles/", "").slice(0, -1)
     const imgURL = url.replace("https://swapi.dev/api/vehicles/", "https://starwars-visualguide.com/assets/img/vehicles/").slice(0, -1) + ".jpg";
@@ -17,9 +18,13 @@ export default function ProductCard({ product }) {
     const onImageError = (e) => {
         e.target.src = placeholderImage
     }
+
+    const navigateToDetail = () => {
+        navigate(detailURL)
+    }
     return (
         <Card>
-            <CardActionArea component={Link} to={detailURL}>
+            <CardActionArea component={Link} to={{ pathname: detailURL, state: { product } }}>
                 <CardMedia
                     component="img"
                     height="250"

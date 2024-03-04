@@ -1,7 +1,7 @@
 import { Alert, Box, CircularProgress } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Outlet, useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import ProductDetail from '../../components/products/ProductDetail';
 
 export default function Product() {
