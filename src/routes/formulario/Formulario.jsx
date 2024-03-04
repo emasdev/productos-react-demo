@@ -14,7 +14,7 @@ const Formulario = () => {
         axios.get('https://run.mocky.io/v3/2a5049a2-c09b-49e6-8fd1-09aa4f0bc7bb')
             .then(function (response) {
                 // handle success
-                console.log(response.data.items);
+                // console.log(response.data.items);
                 setFormScheme(response.data.items)
             })
             .catch(function (error) {
