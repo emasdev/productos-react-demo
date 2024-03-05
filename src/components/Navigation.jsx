@@ -4,11 +4,17 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { Link, Outlet } from 'react-router-dom';
+import LoginButton from './auth/LoginButton';
+import Profile from './auth/Profile';
+import { useAuth0 } from '@auth0/auth0-react';
+import { Stack } from '@mui/material';
 
 export default function ButtonAppBar() {
+
+    const { isAuthenticated } = useAuth0()
+
+
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
@@ -30,8 +36,14 @@ export default function ButtonAppBar() {
                                 </Typography>
                             </Button>
                         </Box>
-
-                        <Button component={Link} color="inherit" to="/formulario">Formulario</Button>
+                        {isAuthenticated ?
+                            <Stack direction={"row"} spacing={3}>
+                                <Button component={Link} color="inherit" to="/formulario">Formulario</Button>
+                                <Profile />
+                            </Stack>
+                            :
+                            <LoginButton />
+                        }
                     </Toolbar>
                 </AppBar>
             </Box>
